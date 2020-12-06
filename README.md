@@ -1,6 +1,4 @@
-# UCLinter
-
-This project is about building a custom Linter that makes sure that a source code conforms to a particular standard.
+[](https://www.microverse.org)
 
 # Ruby Capstone Project - Ruby Linter
 
@@ -9,6 +7,8 @@ This project is about building a custom Linter that makes sure that a source cod
 [![GitHub Pull Requests](https://img.shields.io/badge/GitHub-Pull%20Requests-blue)](https://github.com/uchennaanya/UCLinter/pulls)
 
 # About
+
+This project is about building a custom Linter that makes sure that a source code conforms to a particular standard.
 
 # The Build
 
@@ -201,7 +201,3 @@ Contributions, issues and feature requests are welcome!
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-## Acknowledgments
-
-- Project inspired by [Microverse](https://www.microverse.org)
