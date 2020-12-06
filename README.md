@@ -2,8 +2,6 @@
 
 This project is about building a custom Linter that makes sure that a source code conforms to a particular standard.
 
-
-
 <p align="center">
 
 # Ruby Capstone Project - Ruby Linter
@@ -144,8 +142,8 @@ end
 
 ## Built With
 
-- [Ruby](https://www.ruby-lang.org/en/)
-- RSpec for [Ruby](https://www.ruby-lang.org/en/) Testing
+- (https://www.ruby-lang.org/en/)
+- RSpec for (https://www.ruby-lang.org/en/) Testing
 
 # Getting Started
 
