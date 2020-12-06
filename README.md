@@ -2,15 +2,11 @@
 
 This project is about building a custom Linter that makes sure that a source code conforms to a particular standard.
 
-<p align="center">
-
 # Ruby Capstone Project - Ruby Linter
 
-<img src="https://img.shields.io/github/issues/uchennaanya/UCLinter?style=for-the-badge" alt="issues" >
-<img src="https://img.shields.io/github/license/uchennaanya/UCLinter?style=for-the-badge" alt="Licence" >
-<img src="https://img.shields.io/github/issues-pr/uchennaanya/UCLinter?style=for-the-badge" alt="pull request" >
-
-</p>
+[![View Code](https://img.shields.io/badge/View%20-Code-green)](https://github.com/uchennaanya/UCLinter)
+[![Github Issues](https://img.shields.io/badge/GitHub-Issues-orange)](https://github.com/uchennaanya/UCLinter/issues)
+[![GitHub Pull Requests](https://img.shields.io/badge/GitHub-Pull%20Requests-blue)](https://github.com/uchennaanya/UCLinter/pulls)
 
 # About
 
@@ -142,8 +138,8 @@ end
 
 ## Built With
 
-- (https://www.ruby-lang.org/en/)
-- RSpec for (https://www.ruby-lang.org/en/) Testing
+- [Ruby](https://www.ruby-lang.org/en/)
+- RSpec for [Ruby](https://www.ruby-lang.org/en/) Testing
 
 # Getting Started
 
