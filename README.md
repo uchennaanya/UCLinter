@@ -2,7 +2,7 @@
 
 # Ruby Capstone Project - Ruby Linter
 
-[![View Code](https://img.shields.io/badge/View%20-Code-green)](https://github.com/uchennaanya/UCLinter)
+[![View Code](https://img.shields.io/badge/View%40-Code-pink)](https://github.com/uchennaanya/UCLinter)
 [![Github Issues](https://img.shields.io/badge/GitHub-Issues-orange)](https://github.com/uchennaanya/UCLinter/issues)
 [![GitHub Pull Requests](https://img.shields.io/badge/GitHub-Pull%20Requests-blue)](https://github.com/uchennaanya/UCLinter/pulls)
 
@@ -27,43 +27,43 @@ The custom linter currently checks for the following errors in a ruby file.
 ```ruby
 # Good Code
 
-class Ticket
-  def initialize(venue, date)
-    @venue = venue
-    @date = date
+class Car
+  def initialize(name, model)
+    @name = name
+    @model = model
   end
 end
 
 # Bad Code
 
-class Ticket
-  def initialize(venue, date)
-    @venue = venue
-      @date = date
+class Car
+  def initialize(name, model)
+    @name = name
+      @model = model
   end
 end
 ```
 
-## Trailing spaces
+## Trailing white spaces
 
 > note where the cursor(|) is on the bad code
 
 ```ruby
-# Good Code
+# Valid Code
 
-class Ticket
-  def initialize(venue, date)
-    @venue = venue
-    @date = date
+class Car
+  def initialize(name, model)
+    @name = name
+    @model = model
   end
 end
 
-# Bad Code
+# invalid Code
 
-class Ticket
-  def initialize(venue, date)  |
-    @venue = venue
-    @date = date
+class Car
+  def initialize(name, model)  |
+    @name = name
+    @model = model
   end
 end
 ```
@@ -71,21 +71,21 @@ end
 ## Missing/Unexpected Tag
 
 ```ruby
-# Good Code
+# Valid Code
 
-class Ticket
-  def initialize(venue, date)
-    @venue = venue
-    @date = date
+class Car
+  def initialize(name, model)
+    @name = name
+    @model = model
   end
 end
 
-# Bad Code
+# invalid Code
 
-class Ticket
-  def initialize(venue, date
-    @venue = venue
-    @date = [[date]
+class Car
+  def initialize(name, model
+    @name = name
+    @model = [model
   end
 end
 ```
@@ -95,19 +95,19 @@ end
 ```ruby
 # Good Code
 
-class Ticket
-  def initialize(venue, date)
-    @venue = venue
-    @date = date
+class Car
+  def initialize(name, model)
+    @name = name
+    @model = model
   end
 end
 
 # Bad Code
 
-class Ticket
-  def initialize(venue, date)
-    @venue = venue
-    @date = date
+class Car
+  def initialize(namee, model)
+    @venue = name
+    @date = model
   end
   end
 end
@@ -118,20 +118,20 @@ end
 ```ruby
 # Good Code
 
-class Ticket
-  def initialize(venue, date)
-    @venue = venue
-    @date = date
+class Car
+  def initialize(name, model)
+    @name = name
+    @model = model
   end
 end
 
 # Bad Code
 
-class Ticket
-  def initialize(venue, date)
+class Car
+  def initialize(name, model)
 
-    @venue = venue
-    @date = date
+    @name = name
+    @model = model
   end
 end
 ```
