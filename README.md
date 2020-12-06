@@ -2,7 +2,7 @@
 
 # Ruby Capstone Project - Ruby Linter
 
-[![View Code](https://img.shields.io/badge/View%40-Code-pink)](https://github.com/uchennaanya/UCLinter)
+[![View Code](https://img.shields.io/badge/View%40-Code-yellow)](https://github.com/uchennaanya/UCLinter)
 [![Github Issues](https://img.shields.io/badge/GitHub-Issues-orange)](https://github.com/uchennaanya/UCLinter/issues)
 [![GitHub Pull Requests](https://img.shields.io/badge/GitHub-Pull%20Requests-blue)](https://github.com/uchennaanya/UCLinter/pulls)
 
