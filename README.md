@@ -1,4 +1,4 @@
-[Microverse](https://www.microverse.org)
+![](https://img.shields.io/badge/Microverse-blueviolet)
 
 # Ruby Capstone Project - Ruby Linter
 
@@ -139,7 +139,6 @@ end
 ## Built With
 
 - [Ruby](https://www.ruby-lang.org/en/)
-- RSpec for [Ruby](https://www.ruby-lang.org/en/) Testing
 
 # Getting Started
 
