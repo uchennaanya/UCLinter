@@ -1,4 +1,4 @@
-[](https://www.microverse.org)
+[Microverse](https://www.microverse.org)
 
 # Ruby Capstone Project - Ruby Linter
 
