@@ -1,19 +1,12 @@
 require_relative '../lib/check.rb'
 
 describe CheckError do
-  let(:checker) { CheckError.new('bug.rb') }
+  let(:checker) { CheckError.new('test.rb') }
 
   describe '#check_trailing_spaces' do
     it 'returns trailing space error' do
       checker.check_trailing_spaces
       expect(checker.errors[0]).to eql('line:3:20: Error: Trailing whitespace detected.')
-    end
-  end
-
-  describe '#check_indentation' do
-    it 'returns indentation space error on line 4' do
-      checker.check_indentation
-      expect(checker.errors[0]).to eql('line:4 IndentationWidth: Use 2 spaces for indentation.')
     end
   end
 

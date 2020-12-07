@@ -48,30 +48,6 @@ class CheckError
     end
   end
 
-  # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
-
-  def check_indentation
-    msg = 'IndentationWidth: Use 2 spaces for indentation.'
-    cur_val = 0
-    indent_val = 0
-
-    @checker.file_lines.each_with_index do |str_val, indx|
-      strip_line = str_val.strip.split(' ')
-      exp_val = cur_val * 2
-      res_word = %w[class def if elsif until module unless begin case]
-
-      next unless !str_val.strip.empty? || !strip_line.first.eql?('#')
-
-      indent_val += 1 if res_word.include?(strip_line.first) || strip_line.include?('do')
-      indent_val -= 1 if str_val.strip == 'end'
-
-      next if str_val.strip.empty?
-
-      indent_error(str_val, indx, exp_val, msg)
-      cur_val = indent_val
-    end
-  end
-
   private
 
   def indent_error(str_val, indx, exp_val, msg)

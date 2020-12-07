@@ -2,7 +2,6 @@
 require_relative '../lib/check.rb'
 
 check = CheckError.new(ARGV.first)
-check.check_indentation
 check.check_trailing_spaces
 check.tag_error
 check.end_error
