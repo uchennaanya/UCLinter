@@ -5,6 +5,7 @@ class UcLinter
   def initialize
     self.check = CheckError.new(ARGV.first)
   end
+  
   def checker
     check.check_trailing_spaces
     check.tag_error

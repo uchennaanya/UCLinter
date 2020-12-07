@@ -78,6 +78,7 @@ class CheckError
     end
   end
 
+
   def check_class_empty_line(str_val, indx)
     msg = 'Extra empty line detected at class body beginning'
     return unless str_val.strip.split(' ').first.eql?('class')
