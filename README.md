@@ -14,35 +14,13 @@ This project is about building a custom Linter that makes sure that a source cod
 
 The custom linter currently checks for the following errors in a ruby file.
 
-- check for wrong indentations
+
 - check for trailing spaces error
 - check for missing/unexpected tags example '( )', '[ ]', and '{ }'
 - check for missing/unexpected end of file
 - check for empty line errors
 
 > Below are examples of good and bad test for the above cases. '|' symbol indicate cursor position where needed.
-
-## Indentation Error Check
-
-```ruby
-# Good Code
-
-class Car
-  def initialize(name, model)
-    @name = name
-    @model = model
-  end
-end
-
-# Bad Code
-
-class Car
-  def initialize(name, model)
-    @name = name
-      @model = model
-  end
-end
-```
 
 ## Trailing white spaces
 
