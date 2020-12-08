@@ -3,14 +3,14 @@ require_relative '../lib/check.rb'
 class UcLinter
   attr_accessor :check
   def initialize
-    self.check = CheckError.new(ARGV.first)
+    @check = CheckError.new(ARGV.first)
   end
   
   def checker
-    check.check_trailing_spaces
-    check.tag_error
-    check.end_error
-    check.empty_line_error
+    self.check.check_trailing_spaces
+    self.check.tag_error
+    self.check.end_error
+    self.check.empty_line_error
 
     if check.errors.empty? && check.checker.err_msg.empty?
       puts 'No offenses'.colorize(:green) + ' detected '
