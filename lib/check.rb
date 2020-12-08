@@ -48,6 +48,8 @@ class CheckError
     end
   end
 
+  # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+
   private
 
   def indent_error(str_val, indx, exp_val, msg)
@@ -77,7 +79,6 @@ class CheckError
       log_error("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[3]}' #{args[4]}") if status.eql?(-1)
     end
   end
-
 
   def check_class_empty_line(str_val, indx)
     msg = 'Extra empty line detected at class body beginning'

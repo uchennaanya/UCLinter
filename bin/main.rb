@@ -5,7 +5,7 @@ class UcLinter
   def initialize
     @check = CheckError.new(ARGV.first)
   end
-  
+
   def checker
     check.check_trailing_spaces
     check.tag_error
@@ -20,7 +20,7 @@ class UcLinter
       end
     end
     puts check.checker.err_msg if check.checker.file_lines.empty?
-  end  
+  end
 end
 
 uclinter = UcLinter.new
