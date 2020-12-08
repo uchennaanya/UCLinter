@@ -7,10 +7,10 @@ class UcLinter
   end
   
   def checker
-    self.check.check_trailing_spaces
-    self.check.tag_error
-    self.check.end_error
-    self.check.empty_line_error
+    check.check_trailing_spaces
+    check.tag_error
+    check.end_error
+    check.empty_line_error
 
     if check.errors.empty? && check.checker.err_msg.empty?
       puts 'No offenses'.colorize(:green) + ' detected '
