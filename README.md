@@ -16,103 +16,13 @@ The custom linter currently checks for the following errors in a ruby file.
 
 
 - check for trailing white spaces errors
-- check for missing/unexpected tags example '( )', '[ ]', and '{ }'
+- check for missing/unexpected tags example
 - check for missing/unexpected end of file
 - check for empty line errors
 
-> Below are examples of good and bad test for the above cases. '|' symbol indicate cursor position where needed.
+> Below image dicpicts what a valid and invalid codes are
 
-## Trailing white spaces
-
-> note where the cursor(|) is on the bad code
-
-```ruby
-# Valid Code
-
-class Car
-  def initialize(name, model)
-    @name = name
-    @model = model
-  end
-end
-
-# invalid Code
-
-class Car
-  def initialize(name, model)  |
-    @name = name
-    @model = model
-  end
-end
-```
-
-## Missing/Unexpected Tag
-
-```ruby
-# Valid Code
-
-class Car
-  def initialize(name, model)
-    @name = name
-    @model = model
-  end
-end
-
-# invalid Code
-
-class Car
-  def initialize(name, model
-    @name = name
-    @model = [model
-  end
-end
-```
-
-## Missing/unexpected end
-
-```ruby
-# Good Code
-
-class Car
-  def initialize(name, model)
-    @name = name
-    @model = model
-  end
-end
-
-# Bad Code
-
-class Car
-  def initialize(namee, model)
-    @venue = name
-    @date = model
-  end
-  end
-end
-```
-
-## Empty line error
-
-```ruby
-# Good Code
-
-class Car
-  def initialize(name, model)
-    @name = name
-    @model = model
-  end
-end
-
-# Bad Code
-
-class Car
-  def initialize(name, model)
-
-    @name = name
-    @model = model
-  end
-end
-```
+![Sample code](screenshot.png)
 
 ## Built With
 
