@@ -2,9 +2,9 @@ require 'colorize'
 
 class ReadFiles
   attr_accessor :err_msg, 
-              :file_lines, 
-              :file_path, 
-              :file_lines_size
+                :file_lines, 
+                :file_path, 
+                :file_lines_size
               
   def initialize(file_path)
     @err_msg = ''
