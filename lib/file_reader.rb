@@ -1,7 +1,7 @@
 require 'colorize'
 
 class ReadFiles
-  attr_reader :err_msg, 
+  attr_accessor :err_msg, 
               :file_lines, 
               :file_path, 
               :file_lines_size
