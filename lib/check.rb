@@ -3,19 +3,19 @@ require 'strscan'
 require_relative 'file_reader.rb'
 
 class CheckError
-  attr_reader :checker, :errors
+  attr_reader :checker, :err
 
   def initialize(file_path)
-    @checker = FileReader.new(file_path)
-    @errors = []
-    @keywords = %w[begin case class def do if module unless]
+    @checker = ReadFiles.new(file_path)
+    @err = []
+    @keywords = %w[this is just a test string]
   end
 
-  def check_trailing_spaces
-    @checker.file_lines.each_with_index do |str_val, index|
-      if str_val[-2] == ' ' && !str_val.strip.empty?
-        @errors << "line:#{index + 1}:#{str_val.size - 1}: Error: Trailing whitespace detected."
-        + " '#{str_val.gsub(/\s*$/, '_')}'"
+  def trailing_spaces
+    @checker.file_lines.each_with_index do |v, i|
+      if v[-2] == ' ' && !v.strip.empty?
+        @err << "syntax error, line:#{i + 1}:#{v.size - 1}: Error: Trailing whitespace found."
+        + " '#{v.gsub(/\s*$/, '_')}'"
       end
     end
   end
@@ -35,8 +35,8 @@ class CheckError
     end
 
     status = keyw_count <=> end_count
-    log_error("Lint/Syntax: Missing 'end'") if status.eql?(1)
-    log_error("Lint/Syntax: Unexpected 'end'") if status.eql?(-1)
+    log_error("Lint/Syntax error: Missing 'end'") if status.eql?(1)
+    log_error("Lint/Syntax error: Unexpected 'end'") if status.eql?(-1)
   end
 
   def empty_line_error
@@ -111,6 +111,6 @@ class CheckError
   end
 
   def log_error(error_msg)
-    @errors << error_msg
+    @err << error_msg
   end
 end

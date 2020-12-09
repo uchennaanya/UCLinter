@@ -5,22 +5,22 @@ class UcLinter
   def initialize
     @check = CheckError.new(ARGV.first)
   end
-
+  
   def checker
-    check.check_trailing_spaces
+    check.trailing_spaces
     check.tag_error
     check.end_error
     check.empty_line_error
 
-    if check.errors.empty? && check.checker.err_msg.empty?
+    if check.err.empty? && check.checker.err_msg.empty?
       puts 'No offenses'.colorize(:green) + ' detected '
     else
-      check.errors.uniq.each do |err|
+      check.err.uniq.each do |err|
         puts "#{check.checker.file_path.colorize(:blue)} : #{err.colorize(:red)}"
       end
     end
     puts check.checker.err_msg if check.checker.file_lines.empty?
-  end
+  end  
 end
 
 uclinter = UcLinter.new

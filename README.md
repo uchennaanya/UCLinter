@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Ruby Capstone Project - Ruby Linter
+# Ruby Capstone Project: Linters for Ruby code
 
 [![View Code](https://img.shields.io/badge/View%40-Code-yellow)](https://github.com/uchennaanya/UCLinter)
 [![Github Issues](https://img.shields.io/badge/GitHub-Issues-orange)](https://github.com/uchennaanya/UCLinter/issues)
@@ -15,7 +15,7 @@ This project is about building a custom Linter that makes sure that a source cod
 The custom linter currently checks for the following errors in a ruby file.
 
 
-- check for trailing spaces error
+- check for trailing white spaces errors
 - check for missing/unexpected tags example '( )', '[ ]', and '{ }'
 - check for missing/unexpected end of file
 - check for empty line errors
