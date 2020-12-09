@@ -43,13 +43,13 @@ $ git clone https://github.com/uchennaanya/UCLinter.git
 **To check for errors on a file:**
 
 ```bash
-$ bin/main bug.rb
+$ bin/main test.rb
 ```
 
 ## Testing
 
 To test the code, run `rspec` from root of the folder using terminal.
-Note: `bug.rb` has been excluded from rubocop checks to allow RSpec testing without interfering with Gitflow actions
+Note: `test.rb` has been excluded from rubocop checks to allow RSpec testing without interfering with Gitflow actions
 
 > Rspec is used for the test, to install the gem file, run
 
