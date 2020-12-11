@@ -18,10 +18,19 @@ class ErrCheck
     @keywords = %w[begin case class def do if module unless]
   end
 
+  def empty_line_error
+    @file_checker.file_lines.each_with_index do |valu, indx|
+      end_white_space(valu, indx)
+      check_def_empty_line(valu, indx)
+      end_white_space(valu, indx)
+      extra_empty_line(valu, indx)
+    end
+  end
+
   def trailing_spaces
-    @file_checker.file_lines.each_with_index do |str_val, index|
-      if str_val[-2] == ' ' && !str_val.strip.empty?
-        @errors.push("On line:#{index + 1}:#{str_val.size - 1}: #{@trailing_msg}")
+    @file_checker.file_lines.each_with_index do |str, index|
+      if str[-2] == ' ' && !str.strip.empty?
+        @errors.push("On line:#{index + 1}:#{str.size - 1}: #{@trailing_msg}")
         + " '#{str_val.gsub(/\s*$/, '_')}'"
       end
     end
@@ -44,15 +53,6 @@ class ErrCheck
     status = keyword_count <=> end_count
     all_errors("Lint/Syntax: Missing 'end'") if status.eql?(1)
     all_errors("Lint/Syntax: Unexpected 'end'") if status.eql?(-1)
-  end
-
-  def empty_line_error
-    @file_checker.file_lines.each_with_index do |valu, indx|
-      end_white_space(valu, indx)
-      check_def_empty_line(valu, indx)
-      end_white_space(valu, indx)
-      extra_empty_line(valu, indx)
-    end
   end
 
   private
