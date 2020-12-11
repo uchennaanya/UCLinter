@@ -10,7 +10,7 @@ class FileRead
       @file_lines_count = @file_lines.size
     rescue StandardError => e
       @file_lines = []
-      @err_msg = "Check file name or path again\n".colorize(:light_red) + e.to_s.colorize(:red)
+      @err_msg = "file name or path again\n".colorize(:light_red) + e.to_s.colorize(:red)
     end
   end
 end
