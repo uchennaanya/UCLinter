@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/usr/bin/envruby
 
 require_relative '../lib/check.rb'
 
