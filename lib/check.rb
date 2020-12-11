@@ -1,9 +1,9 @@
 require 'colorize'
 require 'strscan'
-require_relative 'readfile.rb'
+require_relative 'read_file.rb'
 
 class ErrCheck
-  attr_accessor :file_checker, :errors
+  attr_reader :file_checker, :errors
 
   def initialize(file_path)
     @trailing_msg = 'Error: Trailing whitespace detected.'
@@ -102,8 +102,8 @@ class ErrCheck
     all_errors("line:#{index} #{@end_white_space}") if @file_checker.file_lines[index - 1].strip.empty?
   end
 
-  def extra_empty_line(valu, indx)
-    return unless valu.strip.split(' ').include?('do')
+  def extra_empty_line(value, indx)
+    return unless value.strip.split(' ').include?('do')
 
     all_errors("line:#{indx + 2} #{@extra_empty_line_msg}") if @file_checker.file_lines[indx + 1].strip.empty?
   end

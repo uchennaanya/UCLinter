@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Ruby Capstone Project: Linters for Ruby code
+# Ruby Capstone Project: Ruby Linter
 
 [![View Code](https://img.shields.io/badge/View%40-Code-yellow)](https://github.com/uchennaanya/UCLinter)
 [![Github Issues](https://img.shields.io/badge/GitHub-Issues-orange)](https://github.com/uchennaanya/UCLinter/issues)
@@ -8,17 +8,17 @@
 
 # About
 
-This project is about building a custom Linter that makes sure that a source code conforms to a particular standard.
+This project is about building a custom Linter that makes sure that code conforms to ruby community standard.
 
 # The Build
 
-The custom linter currently checks for the following errors in a ruby file.
+This custom linter currently checks for the following errors in a ruby file.
 
 
-- check for trailing white spaces errors
-- check for missing/unexpected tags example
-- check for missing/unexpected end of file
-- check for empty line errors
+- checks for trailing white spaces errors
+- checks for missing/unexpected tags example
+- checks for missing/unexpected end of file
+- checks for empty line errors
 
 > Below image dicpicts what a valid and invalid codes are
 
@@ -33,18 +33,23 @@ The custom linter currently checks for the following errors in a ruby file.
 To get a local copy of the repository please run the following commands on your terminal:
 
 ```
-$ cd <folder>
+$ cd to a desired <folder>
 ```
 
 ```
 $ git clone https://github.com/uchennaanya/UCLinter.git
 ```
 
+```bash
+$ bundle install
+```
+
 **To check for errors on a file:**
 
 ```bash
-$ bin/main test.rb
+$ bin/main.rb test.rb
 ```
+Note: The linter does not run in all cases until the complete file path is added to the file to be tested.
 
 ## Testing
 
