@@ -1,5 +1,5 @@
 class Uclinter
-  attr_accessor :err_check
+  attr_reader :err_check
   def initialize
     @err_check = ErrCheck.new(ARGV.first)
   end
