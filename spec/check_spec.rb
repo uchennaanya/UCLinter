@@ -1,33 +1,32 @@
 require_relative '../lib/check.rb'
 
-describe CheckError do
-  let(:checker) { CheckError.new('test.rb') }
-
-  describe '#check_trailing_spaces' do
-    it 'returns trailing space error' do
-      checker.check_trailing_spaces
-      expect(checker.errors[0]).to eql('line:3:20: Error: Trailing whitespace detected.')
+describe ErrCheck do
+  let(:checker) { ErrCheck.new('test.rb') }
+  describe '#trailing_spaces' do
+    it 'should return trailing space error on line 3' do
+      checker.trailing_spaces
+      expect(checker.errors[0]).to eq('On line:18:18: Error: Trailing whitespace detected.')
     end
   end
 
   describe '#tag_error' do
-    it "returns missing/unexpected tags eg '( )', '[ ]', and '{ }'" do
+    it 'returns missing or unexpected tags eg ( ), [ ], and { }' do
       checker.tag_error
-      expect(checker.errors[0]).to eql("line:3 Lint/Syntax: Unexpected/Missing token ']' Square Bracket")
+      expect(checker.errors[0]).to eq("line:19 Lint/Syntax: Unexpected/Missing token ')' Parenthesis")
     end
   end
 
   describe '#end_error' do
     it 'returns missing/unexpected end' do
       checker.end_error
-      expect(checker.errors[0]).to eql("Lint/Syntax: Missing 'end'")
+      expect(checker.errors[0]).to eq("Lint/Syntax: Missing 'end'")
     end
   end
 
   describe '#empty_line_error' do
     it 'returns empty line error' do
       checker.empty_line_error
-      expect(checker.errors[0]).to eql('line:11 Extra empty line detected at block body end')
+      expect(checker.errors[0]).to eql('line:17 Extra empty line detected at method body beginning')
     end
   end
 end

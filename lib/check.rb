@@ -2,20 +2,20 @@ require 'colorize'
 require 'strscan'
 require_relative 'readfile.rb'
 
-class ErrorCheckers
-  attr_accessor :file_checker, :err
+class ErrCheck
+  attr_accessor :file_checker, :errors
 
   def initialize(file_path)
-    @file_checker = ReadFiles.new(file_path)
-    @err = []
-    @ruby_keywords = ["begin", "case", "class", "def", "do", "if", "module", "unless"]
+    @file_checker = FileRead.new(file_path)
+    @errors = []
+    @keywords = %w[begin case class def do if module unless]
   end
 
   def trailing_spaces
-    @file_checker.file_lines.each_with_index do |v, i|
-      if v[-2] == ' ' && !v.strip.empty?
-        @err << "syntax error, line:#{i + 1}:#{v.size - 1}: Error: whitespace found."
-        + " '#{v.gsub(/\s*$/, '_')}'"
+    @file_checker.file_lines.each_with_index do |str_val, index|
+      if str_val[-2] == ' ' && !str_val.strip.empty?
+        @errors << "On line:#{index + 1}:#{str_val.size - 1}: Error: Trailing whitespace detected."
+        + " '#{str_val.gsub(/\s*$/, '_')}'"
       end
     end
   end
@@ -27,90 +27,88 @@ class ErrorCheckers
   end
 
   def end_error
-    k_count = 0
+    keyword_count = 0
     end_count = 0
-    @file_checker.file_lines.each_with_index do |v, i|
-      k_count += 1 if @ruby_keywords.include?(v.split(' ').first) || v.split(' ').include?('do')
-      end_count += 1 if v.strip == 'end'
+    @file_checker.file_lines.each_with_index do |str_val, _index|
+      keyword_count += 1 if @keywords.include?(str_val.split(' ').first) || str_val.split(' ').include?('do')
+      end_count += 1 if str_val.strip == 'end'
     end
 
-    status = k_count <=> end_count
-    log_error("Syntax error: missing 'end'") if status.eql?(1)
-    log_error("Syntax error: unexpected 'end'") if status.eql?(-1)
+    status = keyword_count <=> end_count
+    all_errors("Lint/Syntax: Missing 'end'") if status.eql?(1)
+    all_errors("Lint/Syntax: Unexpected 'end'") if status.eql?(-1)
   end
 
-  def empty_line_er
-    @file_checker.file_lines.each_with_index do |v, i|
-      check_class_empty_line(v, i)
-      check_def_empty_line(v, i)
-      check_end_empty_line(v, i)
-      check_do_empty_line(v, i)
+  def empty_line_error
+    @file_checker.file_lines.each_with_index do |str_val, indx|
+      check_class_empty_line(str_val, indx)
+      check_def_empty_line(str_val, indx)
+      check_end_empty_line(str_val, indx)
+      check_do_empty_line(str_val, indx)
     end
   end
-
-  # rubocop: disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
 
   private
 
-  def indent_error(v, i, exp_val, info)
-    strip_line = v.strip.split(' ')
-    emp = v.match(/^\s*\s*/)
+  def indent_error(str_val, indx, exp_val, msg)
+    strip_line = str_val.strip.split(' ')
+    emp = str_val.match(/^\s*\s*/)
     end_chk = emp[0].size.eql?(exp_val.zero? ? 0 : exp_val - 2)
 
-    if v.strip.eql?('end') || strip_line.first == 'elsif' || strip_line.first == 'when'
-      log_error("line:#{i + 1} #{info}") unless end_chk
+    if str_val.strip.eql?('end') || strip_line.first == 'elsif' || strip_line.first == 'when'
+      all_errors("line:#{indx + 1} #{msg}") unless end_chk
     elsif !emp[0].size.eql?(exp_val)
-      log_error("line:#{i + 1} #{info}")
+      all_errors("line:#{indx + 1} #{msg}")
     end
   end
 
-  # rubocop: enable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+  # rubocop: enable
 
   def check_tag_error(*args)
-    @file_checker.file_lines.each_with_index do |v, i|
+    @file_checker.file_lines.each_with_index do |str_val, index|
       open_p = []
       close_p = []
-      open_p << v.scan(args[0])
-      close_p << v.scan(args[1])
+      open_p << str_val.scan(args[0])
+      close_p << str_val.scan(args[1])
 
       status = open_p.flatten.size <=> close_p.flatten.size
 
-      log_error("line:#{i + 1} Lint/Syntax: Unexpected/Missing token '#{args[2]}' #{args[4]}") if status.eql?(1)
-      log_error("line:#{i + 1} Lint/Syntax: Unexpected/Missing token '#{args[3]}' #{args[4]}") if status.eql?(-1)
+      all_errors("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[2]}' #{args[4]}") if status.eql?(1)
+      all_errors("line:#{index + 1} Lint/Syntax: Unexpected/Missing token '#{args[3]}' #{args[4]}") if status.eql?(-1)
     end
   end
 
-  def check_class_empty_line(v, i)
-    info = 'Extra empty line detected at class body beginning'
-    return unless v.strip.split(' ').first.eql?('class')
+  def check_class_empty_line(str_val, indx)
+    msg = 'Extra empty line detected at class body beginning'
+    return unless str_val.strip.split(' ').first.eql?('class')
 
-    log_error("line:#{i + 2} #{info}") if @file_checker.file_lines[i + 1].strip.empty?
+    all_errors("line:#{indx + 2} #{msg}") if @file_checker.file_lines[indx + 1].strip.empty?
   end
 
-  def check_def_empty_line(v, i)
-    info1 = 'empty line detected at method body beginning'
-    info2 = 'Use empty lines between method definition'
+  def check_def_empty_line(str_val, indx)
+    msg1 = 'Extra empty line detected at method body beginning'
+    msg2 = 'Use empty lines between method definition'
 
-    return unless v.strip.split(' ').first.eql?('def')
+    return unless str_val.strip.split(' ').first.eql?('def')
 
-    log_error("line:#{i + 2} #{info1}") if @file_checker.file_lines[i + 1].strip.empty?
-    log_error("line:#{i + 1} #{info2}") if @file_checker.file_lines[i - 1].strip.split(' ').first.eql?('end')
+    all_errors("line:#{indx + 2} #{msg1}") if @file_checker.file_lines[indx + 1].strip.empty?
+    all_errors("line:#{indx + 1} #{msg2}") if @file_checker.file_lines[indx - 1].strip.split(' ').first.eql?('end')
   end
 
-  def check_end_empty_line(v, i)
-    return unless v.strip.split(' ').first.eql?('end')
+  def check_end_empty_line(str_val, indx)
+    return unless str_val.strip.split(' ').first.eql?('end')
 
-    log_error("line:#{i} Extra empty line detected at block body end") if @file_checker.file_lines[i - 1].strip.empty?
+    all_errors("line:#{indx} Extra empty line detected at block body end") if @file_checker.file_lines[indx - 1].strip.empty?
   end
 
-  def check_do_empty_line(v, i)
-    info = 'Extra empty line detected at block body beginning'
-    return unless v.strip.split(' ').include?('do')
+  def check_do_empty_line(str_val, indx)
+    msg = 'Extra empty line detected at block body beginning'
+    return unless str_val.strip.split(' ').include?('do')
 
-    log_error("line:#{i + 2} #{info}") if @file_checker.file_lines[i + 1].strip.empty?
+    all_errors("line:#{indx + 2} #{msg}") if @file_checker.file_lines[indx + 1].strip.empty?
   end
 
-  def log_error(error_info)
-    @err << error_info
+  def all_errors(error_msg)
+    @errors << error_msg
   end
 end
