@@ -8,7 +8,7 @@ class Uclinter
     @err_check = ErrCheck.new(ARGV.first)
   end
 
-  def linter
+  def my_linter
     err_check.trailing_spaces
     err_check.tag_error
     err_check.end_error
@@ -28,4 +28,4 @@ end
 
 uclinter = Uclinter.new
 
-uclinter.linter
+uclinter.my_linter
