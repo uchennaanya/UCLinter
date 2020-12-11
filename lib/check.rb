@@ -1,3 +1,6 @@
+# rubocop:disable Lint/CyclomaticComplexity
+# rubocop:disable Lint/PerceivedComplexity
+
 require 'colorize'
 require 'strscan'
 require_relative 'readfile.rb'
@@ -62,8 +65,6 @@ class ErrCheck
     end
   end
 
-  # rubocop: enable
-
   def check_tag_error(*args)
     @file_checker.file_lines.each_with_index do |str_val, index|
       open_p = []
@@ -98,7 +99,8 @@ class ErrCheck
   def check_end_empty_line(str_val, indx)
     return unless str_val.strip.split(' ').first.eql?('end')
 
-    all_errors("line:#{indx} Extra empty line detected at block body end") if @file_checker.file_lines[indx - 1].strip.empty?
+    msg = 'Extra empty line detected at block body end'
+    all_errors("line:#{indx} #{msg}") if @file_checker.file_lines[indx - 1].strip.empty?
   end
 
   def check_do_empty_line(str_val, indx)
@@ -112,3 +114,6 @@ class ErrCheck
     @errors << error_msg
   end
 end
+
+# rubocop:enable Lint/CyclomaticComplexity
+# rubocop:enable Lint/PerceivedComplexity
