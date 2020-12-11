@@ -14,7 +14,7 @@ class Uclinter
     err_check.end_error
     err_check.empty_line_error
 
-    if err_check.errors.empty? && err_check.checker.err_msg.empty?
+    if err_check.errors.empty? && err_check.file_checker.err_msg.empty?
       puts 'No offenses'.colorize(:green) + ' detected'
     else
       err_check.errors.uniq.each do |err|
