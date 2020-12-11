@@ -43,11 +43,11 @@ class ErrCheck
   end
 
   def empty_line_error
-    @file_checker.file_lines.each_with_index do |str_val, indx|
-      check_class_empty_line(str_val, indx)
-      check_def_empty_line(str_val, indx)
-      check_end_empty_line(str_val, indx)
-      check_do_empty_line(str_val, indx)
+    @file_checker.file_lines.each_with_index do |valu, indx|
+      check_class_empty_line(valu, indx)
+      check_def_empty_line(valu, indx)
+      check_end_empty_line(valu, indx)
+      extra_empty_line(valu, indx)
     end
   end
 
@@ -96,16 +96,16 @@ class ErrCheck
     all_errors("line:#{indx + 1} #{msg2}") if @file_checker.file_lines[indx - 1].strip.split(' ').first.eql?('end')
   end
 
-  def check_end_empty_line(str_val, indx)
-    return unless str_val.strip.split(' ').first.eql?('end')
+  def check_end_empty_line(value, index)
+    return unless value.strip.split(' ').first.eql?('end')
 
     msg = 'Extra empty line detected at block body end'
-    all_errors("line:#{indx} #{msg}") if @file_checker.file_lines[indx - 1].strip.empty?
+    all_errors("line:#{index} #{msg}") if @file_checker.file_lines[index - 1].strip.empty?
   end
 
-  def check_do_empty_line(str_val, indx)
+  def extra_empty_line(valu, indx)
     msg = 'Extra empty line detected at block body beginning'
-    return unless str_val.strip.split(' ').include?('do')
+    return unless valu.strip.split(' ').include?('do')
 
     all_errors("line:#{indx + 2} #{msg}") if @file_checker.file_lines[indx + 1].strip.empty?
   end
