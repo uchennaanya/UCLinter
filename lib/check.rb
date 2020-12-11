@@ -31,7 +31,7 @@ class ErrCheck
     @file_checker.file_lines.each_with_index do |str, index|
       if str[-2] == ' ' && !str.strip.empty?
         @errors.push("On line:#{index + 1}:#{str.size - 1}: #{@trailing_msg}")
-        + " '#{str_val.gsub(/\s*$/, '_')}'"
+        + " '#{str.gsub(/\s*$/, '_')}'"
       end
     end
   end
